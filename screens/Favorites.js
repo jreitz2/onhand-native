@@ -11,8 +11,13 @@ export default function Filters() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: "darkseagreen",
     justifyContent: "center",
+    alignItems: "center",
+  },
+  regularText: {
+    fontSize: 16,
+    padding: 10,
+    fontFamily: "PatrickHand",
   },
 });

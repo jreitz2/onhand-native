@@ -5,12 +5,25 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  Button,
   Pressable,
 } from "react-native";
+import { useDiet } from "../DietContext";
 
-export default function Header() {
+export default function Header({ fetchRecipeData }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const {
+    isVegetarian,
+    setIsVegetarian,
+    isGlutenFree,
+    setIsGlutenFree,
+    isDairyFree,
+    setIsDairyFree,
+  } = useDiet();
+
+  const handleSearch = (searchTerm) => {
+    fetchRecipeData(searchTerm, isVegetarian, isGlutenFree);
+    setSearchTerm("");
+  };
 
   return (
     <ImageBackground
@@ -26,14 +39,41 @@ export default function Header() {
           </Text>
         </View>
         <View style={styles.search}>
-          <TextInput
-            style={(styles.regularText, styles.textInput)}
-            placeholder="Bacon, sugar, flour"
-            value={searchTerm}
-            onChangeText={setSearchTerm}
-          />
-
-          <Pressable onPress={() => console.log(searchTerm)}>
+          <View>
+            <TextInput
+              style={(styles.regularText, styles.textInput)}
+              placeholder="Bacon, sugar, flour"
+              value={searchTerm}
+              onChangeText={setSearchTerm}
+            />
+            <View style={styles.filters}>
+              {isVegetarian && (
+                <View style={styles.filterBackground}>
+                  <Text style={styles.filterText}>Vegetarian</Text>
+                  <Pressable onPress={() => setIsVegetarian(false)}>
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              )}
+              {isGlutenFree && (
+                <View style={styles.filterBackground}>
+                  <Text style={styles.filterText}>Gluten-Free</Text>
+                  <Pressable onPress={() => setIsGlutenFree(false)}>
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              )}
+              {isDairyFree && (
+                <View style={styles.filterBackground}>
+                  <Text style={styles.filterText}>Dairy-Free</Text>
+                  <Pressable onPress={() => setIsDairyFree(false)}>
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              )}
+            </View>
+          </View>
+          <Pressable onPress={() => handleSearch(searchTerm)}>
             <Text style={styles.button}>Search</Text>
           </Pressable>
         </View>
@@ -49,12 +89,14 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   headerText: {
-    fontSize: 22,
+    fontSize: 24,
     padding: 10,
+    fontFamily: "PatrickHand",
   },
   regularText: {
-    fontSize: 14,
+    fontSize: 16,
     padding: 10,
+    fontFamily: "PatrickHand",
   },
   textInput: {
     backgroundColor: "white",
@@ -62,10 +104,11 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     borderRadius: 5,
     padding: 5,
+    fontSize: 16,
+    fontFamily: "PatrickHand",
   },
   search: {
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
   },
   button: {
@@ -74,5 +117,24 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     marginLeft: 10,
     padding: 10,
+    fontSize: 16,
+    fontFamily: "PatrickHand",
+  },
+  filters: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  filterText: {
+    fontSize: 12,
+    fontFamily: "PatrickHand",
+  },
+  filterBackground: {
+    width: 80,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "lightgrey",
+    padding: 5,
+    borderRadius: 5,
+    margin: 2,
   },
 });

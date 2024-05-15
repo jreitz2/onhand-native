@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Header from "../components/Header";
+import Results from "../components/Results";
+import { useFetchRecipes } from "../hooks/useFetchRecipes";
 
 export default function Home() {
+  const { isLoading, recipeData, error, fetchRecipeData } = useFetchRecipes();
+
   return (
     <View style={styles.container}>
-      <Header />
-      <ScrollView>
-        <Text>This is where this list of recipes go</Text>
-      </ScrollView>
+      <Header fetchRecipeData={fetchRecipeData} />
+      <Results isLoading={isLoading} recipeData={recipeData} error={error} />
     </View>
   );
 }
@@ -15,7 +17,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "mediumseagreen",
+    backgroundColor: "darkseagreen",
     justifyContent: "center",
   },
 });
