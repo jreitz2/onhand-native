@@ -32,10 +32,10 @@ export default function Results({ isLoading, recipeData, error }) {
       />
       <Stack.Screen
         name="Recipe Details"
-        component={RecipeDetails}
         options={{
           headerShown: false,
         }}
+        component={RecipeDetails}
       />
     </Stack.Navigator>
   );

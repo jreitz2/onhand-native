@@ -1,7 +1,29 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import useFetchRecipeDetails from "../hooks/useFetchRecipeDetails";
+import { useEffect } from "react";
+import { ActivityIndicator } from "react-native";
+import { API_KEY } from "@env";
 
 export default function RecipeDetails({ route, navigation }) {
   const { item } = route.params;
+  const { recipeDetails, fetchDetails, isLoading } = useFetchRecipeDetails();
+
+  useEffect(() => {
+    fetchDetails(item.id);
+  }, [item]);
+
+  useEffect(() => {
+    console.log(recipeDetails);
+  }, [recipeDetails]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="black" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.regularText}>Recipe Details for {item.title}</Text>
@@ -9,6 +31,14 @@ export default function RecipeDetails({ route, navigation }) {
       <Pressable onPress={() => navigation.pop()}>
         <Text style={styles.regularText}>Close</Text>
       </Pressable>
+
+      <Image
+        key={recipeDetails.nutrition}
+        source={{
+          uri: recipeDetails.nutrition,
+        }}
+        style={{ width: 200, height: 500, resizeMode: "contain" }}
+      />
     </View>
   );
 }
@@ -16,7 +46,6 @@ export default function RecipeDetails({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
     backgroundColor: "#c1f5c3",
   },
   regularText: {

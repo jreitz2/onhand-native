@@ -1,5 +1,4 @@
 import { FlatList, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import RecipeListItem from "./RecipeListItem";
 
 export default function ResultsList({ recipeData, navigation }) {

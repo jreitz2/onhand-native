@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { API_KEY } from "@env";
 
 export const useFetchRecipes = () => {
@@ -33,7 +33,7 @@ export const useFetchRecipes = () => {
       );
       if (data.results.length === 0) {
         setRecipeData(null);
-      } else {
+      } else if (data.results) {
         const formattedData = data.results.map((recipe) => ({
           id: recipe.id,
           title: recipe.title,
@@ -57,5 +57,5 @@ export const useFetchRecipes = () => {
     }
   };
 
-  return { isLoading, recipeData, error, fetchRecipeData };
+  return { isLoading, setIsLoading, recipeData, error, fetchRecipeData };
 };
