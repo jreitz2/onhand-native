@@ -5,6 +5,7 @@ export const useFetchRecipes = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [recipeData, setRecipeData] = useState(null);
   const [error, setError] = useState(null);
+  const [noResults, setNoResults] = useState(false);
 
   const fetchRecipeData = async (searchTerm, isVegetarian, isGlutenFree) => {
     setIsLoading(true);
@@ -32,6 +33,7 @@ export const useFetchRecipes = () => {
         isGlutenFree
       );
       if (data.results.length === 0) {
+        setNoResults(true);
         setRecipeData(null);
       } else if (data.results) {
         const formattedData = data.results.map((recipe) => ({
@@ -46,16 +48,29 @@ export const useFetchRecipes = () => {
             : [],
           readyTime: recipe.readyInMinutes,
         }));
+        setNoResults(false);
         setRecipeData(formattedData);
         console.log("formattedData", formattedData);
+      } else {
+        setRecipeData(null);
+        setNoResults(true);
       }
     } catch (error) {
       setError(error);
+      setRecipeData(null);
+      setNoResults(true);
       setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
   };
 
-  return { isLoading, setIsLoading, recipeData, error, fetchRecipeData };
+  return {
+    isLoading,
+    setIsLoading,
+    recipeData,
+    error,
+    fetchRecipeData,
+    noResults,
+  };
 };

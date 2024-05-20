@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ResultsList from "./ResultsList";
 import RecipeDetails from "../screens/RecipeDetails";
 
-export default function Results({ isLoading, recipeData, error }) {
+export default function Results({ isLoading, recipeData, error, noResults }) {
   const Stack = createStackNavigator();
 
   if (isLoading) {
@@ -27,6 +27,7 @@ export default function Results({ isLoading, recipeData, error }) {
             isLoading={isLoading}
             recipeData={recipeData}
             error={error}
+            noResults={noResults}
           />
         )}
       />

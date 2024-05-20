@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function RecipeListItem({ item, navigation }) {
   return (
@@ -7,10 +8,16 @@ export default function RecipeListItem({ item, navigation }) {
         <Text style={styles.title}>{item.title}</Text>
         <Image source={{ uri: item.imageUrl }} style={styles.image} />
         <View style={styles.info}>
-          <Text style={styles.regularText}>
-            {String(item.readyTime)} minutes
-          </Text>
-          <Text>{String(item.likes)} likes</Text>
+          <View style={styles.infoItem}>
+            <Ionicons name={"timer-outline"} size={30} color={"black"} />
+            <Text style={styles.regularText}>{item.readyTime} minutes</Text>
+          </View>
+          <View style={styles.infoItem}>
+            <Ionicons name={"thumbs-up-outline"} size={30} color={"black"} />
+            <Text style={styles.regularText}>
+              {item.likes === 1 ? "1 like" : ` ${item.likes} likes`}
+            </Text>
+          </View>
         </View>
       </View>
     </Pressable>
@@ -43,6 +50,10 @@ const styles = StyleSheet.create({
   info: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  infoItem: {
+    flexDirection: "row",
     alignItems: "center",
   },
 });

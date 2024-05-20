@@ -4,12 +4,18 @@ import Results from "../components/Results";
 import { useFetchRecipes } from "../hooks/useFetchRecipes";
 
 export default function Home() {
-  const { isLoading, recipeData, error, fetchRecipeData } = useFetchRecipes();
+  const { isLoading, recipeData, error, noResults, fetchRecipeData } =
+    useFetchRecipes();
 
   return (
     <View style={styles.container}>
       <Header fetchRecipeData={fetchRecipeData} />
-      <Results isLoading={isLoading} recipeData={recipeData} error={error} />
+      <Results
+        isLoading={isLoading}
+        recipeData={recipeData}
+        error={error}
+        noResults={noResults}
+      />
     </View>
   );
 }
