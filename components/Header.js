@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -18,12 +18,34 @@ export default function Header({ fetchRecipeData }) {
     setIsGlutenFree,
     isDairyFree,
     setIsDairyFree,
+    isVegan,
+    setIsVegan,
+    isKetogenic,
+    setIsKetogenic,
   } = useDiet();
 
   const handleSearch = (searchTerm) => {
-    fetchRecipeData(searchTerm, isVegetarian, isGlutenFree);
+    fetchRecipeData(
+      searchTerm,
+      isVegetarian,
+      isGlutenFree,
+      isDairyFree,
+      isVegan,
+      isKetogenic
+    );
     setSearchTerm("");
   };
+
+  useEffect(() => {
+    fetchRecipeData(
+      "Bacon, sugar, flour",
+      isVegetarian,
+      isGlutenFree,
+      isDairyFree,
+      isVegan,
+      isKetogenic
+    );
+  }, []);
 
   return (
     <ImageBackground
@@ -67,6 +89,22 @@ export default function Header({ fetchRecipeData }) {
                 <View style={styles.filterBackground}>
                   <Text style={styles.filterText}>Dairy-Free</Text>
                   <Pressable onPress={() => setIsDairyFree(false)}>
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              )}
+              {isVegan && (
+                <View style={styles.filterBackground}>
+                  <Text style={styles.filterText}>Vegan</Text>
+                  <Pressable onPress={() => setIsVegan(false)}>
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              )}
+              {isKetogenic && (
+                <View style={styles.filterBackground}>
+                  <Text style={styles.filterText}>Keto</Text>
+                  <Pressable onPress={() => setIsKetogenic(false)}>
                     <Text>X</Text>
                   </Pressable>
                 </View>
@@ -123,13 +161,14 @@ const styles = StyleSheet.create({
   filters: {
     flexDirection: "row",
     flexWrap: "wrap",
+    width: 300,
   },
   filterText: {
     fontSize: 12,
     fontFamily: "PatrickHand",
   },
   filterBackground: {
-    width: 80,
+    width: "25%",
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "lightgrey",

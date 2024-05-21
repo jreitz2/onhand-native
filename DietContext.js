@@ -6,6 +6,8 @@ export const DietProvider = ({ children }) => {
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isDairyFree, setIsDairyFree] = useState(false);
+  const [isVegan, setIsVegan] = useState(false);
+  const [isKetogenic, setIsKetogenic] = useState(false);
 
   return (
     <DietContext.Provider
@@ -16,6 +18,10 @@ export const DietProvider = ({ children }) => {
         setIsGlutenFree,
         isDairyFree,
         setIsDairyFree,
+        isVegan,
+        setIsVegan,
+        isKetogenic,
+        setIsKetogenic,
       }}
     >
       {children}

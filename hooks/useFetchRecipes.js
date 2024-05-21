@@ -7,19 +7,27 @@ export const useFetchRecipes = () => {
   const [error, setError] = useState(null);
   const [noResults, setNoResults] = useState(false);
 
-  const fetchRecipeData = async (searchTerm, isVegetarian, isGlutenFree) => {
+  const fetchRecipeData = async (
+    searchTerm,
+    isVegetarian,
+    isGlutenFree,
+    isDairyFree,
+    isVegan,
+    isKetogenic
+  ) => {
     setIsLoading(true);
     const noSpaceSearchTerm = searchTerm.replace(" ", "");
     const key = API_KEY;
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=6&addRecipeInformation=true&addRecipeInstructions=true`;
-    if (isVegetarian && !isGlutenFree) {
-      url += "&diet=vegetarian";
-    }
-    if (isGlutenFree && !isVegetarian) {
-      url += "&diet=gluten-free";
-    }
-    if (isGlutenFree && isVegetarian) {
-      url += "&diet=vegetarian,gluten-free";
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=20&addRecipeInformation=true&addRecipeInstructions=true`;
+    let diets = [];
+    if (isVegetarian) diets.push("vegetarian");
+    if (isGlutenFree) diets.push("gluten-free");
+    if (isDairyFree) diets.push("ovo-vegetarian");
+    if (isVegan) diets.push("vegan");
+    if (isKetogenic) diets.push("ketogenic");
+
+    if (diets.length > 0) {
+      url += `&diet=${diets.join(",")}`;
     }
     try {
       const response = await fetch(url);
@@ -30,7 +38,13 @@ export const useFetchRecipes = () => {
         "isVegetarian",
         isVegetarian,
         "isGlutenFree",
-        isGlutenFree
+        isGlutenFree,
+        "isDairyFree",
+        isDairyFree,
+        "isVegan",
+        isVegan,
+        "isKetogenic",
+        isKetogenic
       );
       if (data.results.length === 0) {
         setNoResults(true);

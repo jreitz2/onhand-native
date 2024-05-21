@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 10,
     fontFamily: "PatrickHand",
+    marginLeft: 20,
   },
   titleText: {
     fontSize: 24,

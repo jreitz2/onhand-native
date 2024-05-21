@@ -9,6 +9,10 @@ export default function Filters() {
     setIsGlutenFree,
     isDairyFree,
     setIsDairyFree,
+    isVegan,
+    setIsVegan,
+    isKetogenic,
+    setIsKetogenic,
   } = useDiet();
 
   const handleVegetarian = () => {
@@ -21,6 +25,14 @@ export default function Filters() {
 
   const handleDairyFree = () => {
     setIsDairyFree(!isDairyFree);
+  };
+
+  const handleVegan = () => {
+    setIsVegan(!isVegan);
+  };
+
+  const handleKetogenic = () => {
+    setIsKetogenic(!isKetogenic);
   };
 
   return (
@@ -43,6 +55,18 @@ export default function Filters() {
         onPress={handleDairyFree}
       >
         <Text>Dairy-Free</Text>
+      </Pressable>
+      <Pressable
+        style={isVegan ? styles.activeFilterButton : styles.filterButtons}
+        onPress={handleVegan}
+      >
+        <Text>Vegan</Text>
+      </Pressable>
+      <Pressable
+        style={isKetogenic ? styles.activeFilterButton : styles.filterButtons}
+        onPress={handleKetogenic}
+      >
+        <Text>Ketogenic</Text>
       </Pressable>
     </View>
   );
