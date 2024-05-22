@@ -32,20 +32,20 @@ export const useFetchRecipes = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(
-        "searchTerm",
-        searchTerm,
-        "isVegetarian",
-        isVegetarian,
-        "isGlutenFree",
-        isGlutenFree,
-        "isDairyFree",
-        isDairyFree,
-        "isVegan",
-        isVegan,
-        "isKetogenic",
-        isKetogenic
-      );
+      // console.log(
+      //   "searchTerm",
+      //   searchTerm,
+      //   "isVegetarian",
+      //   isVegetarian,
+      //   "isGlutenFree",
+      //   isGlutenFree,
+      //   "isDairyFree",
+      //   isDairyFree,
+      //   "isVegan",
+      //   isVegan,
+      //   "isKetogenic",
+      //   isKetogenic
+      // );
       if (data.results.length === 0) {
         setNoResults(true);
         setRecipeData(null);

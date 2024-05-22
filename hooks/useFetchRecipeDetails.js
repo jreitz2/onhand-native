@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { API_KEY } from "@env";
-import { useFetchRecipes } from "./useFetchRecipes";
 
 export default function useFetchRecipeDetails() {
   const [recipeDetails, setRecipeDetails] = useState({});

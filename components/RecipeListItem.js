@@ -1,11 +1,45 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useFavorites } from "../FavoritesContext";
 
 export default function RecipeListItem({ item, navigation }) {
+  const { favorites, setFavorites } = useFavorites();
+
+  const handleFavoritePress = () => {
+    if (favorites.some((favoriteItem) => favoriteItem.id === item.id)) {
+      setFavorites(
+        favorites.filter((favoriteItem) => favoriteItem.id !== item.id)
+      );
+    } else {
+      setFavorites([...favorites, item]);
+    }
+  };
+
+  const isFavorite = favorites.some(
+    (favoriteItem) => favoriteItem.id === item.id
+  );
+
   return (
     <Pressable onPress={() => navigation.push("Recipe Details", { item })}>
       <View style={styles.container}>
-        <Text style={styles.title}>{item.title}</Text>
+        <View style={styles.itemHeader}>
+          <Text style={styles.title}>{item.title}</Text>
+          {isFavorite ? (
+            <Ionicons
+              name={"bookmark"}
+              size={30}
+              color={"black"}
+              onPress={handleFavoritePress}
+            />
+          ) : (
+            <Ionicons
+              name={"bookmark-outline"}
+              size={30}
+              color={"black"}
+              onPress={handleFavoritePress}
+            />
+          )}
+        </View>
         <Image source={{ uri: item.imageUrl }} style={styles.image} />
         <View style={styles.info}>
           <View style={styles.infoItem}>
@@ -36,6 +70,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: "PatrickHand",
+    maxWidth: "80%",
   },
   regularText: {
     fontSize: 16,
@@ -54,6 +89,11 @@ const styles = StyleSheet.create({
   },
   infoItem: {
     flexDirection: "row",
+    alignItems: "center",
+  },
+  itemHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
   },
 });

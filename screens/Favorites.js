@@ -1,23 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import FavoritesList from "./FavoritesList";
+import RecipeDetails from "./RecipeDetails";
 
-export default function Filters() {
+const Stack = createStackNavigator();
+
+export default function FavoritesScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Favorites Screen</Text>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Favorites List"
+        options={{ headerShown: false }}
+        children={(props) => <FavoritesList {...props} />}
+      />
+      <Stack.Screen
+        name="Recipe Details"
+        options={{ headerShown: false }}
+        component={RecipeDetails}
+      />
+    </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "darkseagreen",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  regularText: {
-    fontSize: 16,
-    padding: 10,
-    fontFamily: "PatrickHand",
-  },
-});

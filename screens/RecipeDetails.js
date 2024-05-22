@@ -18,10 +18,6 @@ export default function RecipeDetails({ route, navigation }) {
     fetchDetails(item.id);
   }, [item]);
 
-  useEffect(() => {
-    console.log(recipeDetails);
-  }, [recipeDetails]);
-
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -79,6 +75,7 @@ export default function RecipeDetails({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 20,
     backgroundColor: "#c1f5c3",
   },
   detailsTitle: {
