@@ -84,12 +84,14 @@ const styles = StyleSheet.create({
   },
   backToTopButton: {
     position: "absolute",
-    width: 100,
+    width: 120,
+    height: 40,
     bottom: 10,
     right: "50%",
-    transform: [{ translateX: 50 }],
+    transform: [{ translateX: 60 }],
     backgroundColor: "lightgrey",
-    paddingHorizontal: 5,
     borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

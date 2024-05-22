@@ -6,8 +6,9 @@ import {
   Text,
   View,
 } from "react-native";
+import React from "react";
 import useFetchRecipeDetails from "../hooks/useFetchRecipeDetails";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 
 export default function RecipeDetails({ route, navigation }) {
@@ -17,6 +18,23 @@ export default function RecipeDetails({ route, navigation }) {
   useEffect(() => {
     fetchDetails(item.id);
   }, [item]);
+
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  const flatListRef = React.createRef();
+
+  const handleScroll = (event) => {
+    const offsetY = event.nativeEvent.contentOffset.y;
+    if (offsetY > 0) {
+      setShowBackToTop(true);
+    } else {
+      setShowBackToTop(false);
+    }
+  };
+
+  const handleBackToTop = () => {
+    flatListRef.current.scrollToIndex({ index: 0 });
+  };
 
   if (isLoading) {
     return (
@@ -32,6 +50,8 @@ export default function RecipeDetails({ route, navigation }) {
         <FlatList
           data={recipeDetails.ingredients.ingredients}
           keyExtractor={(item, index) => index.toString()}
+          ref={flatListRef}
+          onScroll={handleScroll}
           renderItem={({ item }) => (
             <Text style={styles.regularText}>
               {item.amount.us.value} {item.amount.us.unit} {item.name}
@@ -67,6 +87,11 @@ export default function RecipeDetails({ route, navigation }) {
           }
           style={{ width: 400 }}
         />
+        {showBackToTop && (
+          <Pressable onPress={handleBackToTop} style={styles.backToTopButton}>
+            <Text style={styles.regularTextButton}>Back to Top</Text>
+          </Pressable>
+        )}
       </View>
     );
   }
@@ -120,5 +145,22 @@ const styles = StyleSheet.create({
     height: 600,
     resizeMode: "contain",
     marginVertical: 10,
+  },
+  backToTopButton: {
+    position: "absolute",
+    width: 120,
+    height: 40,
+    bottom: 10,
+    right: "50%",
+    transform: [{ translateX: 60 }],
+    backgroundColor: "lightgrey",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  regularTextButton: {
+    fontSize: 16,
+    padding: 10,
+    fontFamily: "PatrickHand",
   },
 });

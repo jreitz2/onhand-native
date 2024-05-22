@@ -64,7 +64,7 @@ export const useFetchRecipes = () => {
         }));
         setNoResults(false);
         setRecipeData(formattedData);
-        console.log("formattedData", formattedData);
+        // console.log("formattedData", formattedData);
       } else {
         setRecipeData(null);
         setNoResults(true);

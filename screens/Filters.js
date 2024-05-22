@@ -37,36 +37,36 @@ export default function Filters() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.regularText}>Choose from the following filters!</Text>
+      <Text style={styles.titleText}>Choose from the following filters!</Text>
       <Pressable
         style={isVegetarian ? styles.activeFilterButton : styles.filterButtons}
         onPress={handleVegetarian}
       >
-        <Text>Vegetarian</Text>
+        <Text style={styles.regularText}>Vegetarian</Text>
       </Pressable>
       <Pressable
         style={isGlutenFree ? styles.activeFilterButton : styles.filterButtons}
         onPress={handleGlutenFree}
       >
-        <Text>Gluten-Free</Text>
+        <Text style={styles.regularText}>Gluten-Free</Text>
       </Pressable>
       <Pressable
         style={isDairyFree ? styles.activeFilterButton : styles.filterButtons}
         onPress={handleDairyFree}
       >
-        <Text>Dairy-Free</Text>
+        <Text style={styles.regularText}>Dairy-Free</Text>
       </Pressable>
       <Pressable
         style={isVegan ? styles.activeFilterButton : styles.filterButtons}
         onPress={handleVegan}
       >
-        <Text>Vegan</Text>
+        <Text style={styles.regularText}>Vegan</Text>
       </Pressable>
       <Pressable
         style={isKetogenic ? styles.activeFilterButton : styles.filterButtons}
         onPress={handleKetogenic}
       >
-        <Text>Ketogenic</Text>
+        <Text style={styles.regularText}>Ketogenic</Text>
       </Pressable>
     </View>
   );
@@ -79,6 +79,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  titleText: {
+    fontSize: 24,
+    padding: 10,
+    fontFamily: "PatrickHand",
+  },
   regularText: {
     fontSize: 16,
     padding: 10,
@@ -86,13 +91,11 @@ const styles = StyleSheet.create({
   },
   filterButtons: {
     backgroundColor: "lightgrey",
-    padding: 10,
     margin: 10,
     borderRadius: 15,
   },
   activeFilterButton: {
     backgroundColor: "mediumseagreen",
-    padding: 10,
     margin: 10,
     borderRadius: 15,
   },
