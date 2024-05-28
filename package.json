@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "export": "npx expo export --platform web --public-url https://jreitz2.github.io/onhand-native/",
+    "export": "npx expo export --platform web",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
