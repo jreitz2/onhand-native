@@ -16,6 +16,7 @@
       "bundleIdentifier": "com.jreitz2.onhandnative"
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -24,7 +25,12 @@
       "package": "com.jreitz2.onhandnative"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "build": {
+        "babel": {
+          "include": ["@expo/vector-icons/Ionicons"]
+        }
+      }
     },
     "plugins": ["expo-font"],
     "extra": {

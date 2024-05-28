@@ -3,17 +3,18 @@
     "version": ">= 9.1.0"
   },
   "build": {
+    "secrets": {
+      "API_KEY": {
+        "target": "*",
+        "required": true
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal"
     },
     "preview": {
       "distribution": "internal"
-    },
-    "production": {
-      "env": {
-        "API_KEY": "e362ee8a688847febf87cdb4e1a22a92"
-      }
     }
   },
   "submit": {

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,39 +26,57 @@ export default function App() {
 
   if (fontsLoaded) {
     return (
-      <DietProvider>
-        <FavoritesProvider>
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={({ route }) => ({
-                headerShown: false,
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName;
+      <View style={styles.container}>
+        <DietProvider>
+          <FavoritesProvider>
+            <NavigationContainer>
+              <Tab.Navigator
+                screenOptions={({ route }) => ({
+                  headerShown: false,
+                  tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
 
-                  if (route.name === "Home") {
-                    iconName = focused ? "home-sharp" : "home-outline";
-                  } else if (route.name === "Filters") {
-                    iconName = focused
-                      ? "filter-circle-sharp"
-                      : "filter-circle-outline";
-                  } else if (route.name === "Favorites") {
-                    iconName = focused
-                      ? "heart-circle-sharp"
-                      : "heart-circle-outline";
-                  }
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-                tabBarActiveTintColor: "mediumseagreen",
-                tabBarInactiveTintColor: "gray",
-              })}
-            >
-              <Tab.Screen name="Home" component={Home} />
-              <Tab.Screen name="Filters" component={Filters} />
-              <Tab.Screen name="Favorites" component={Favorites} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </FavoritesProvider>
-      </DietProvider>
+                    if (route.name === "Home") {
+                      iconName = focused ? "home-sharp" : "home-outline";
+                    } else if (route.name === "Filters") {
+                      iconName = focused
+                        ? "filter-circle-sharp"
+                        : "filter-circle-outline";
+                    } else if (route.name === "Favorites") {
+                      iconName = focused
+                        ? "heart-circle-sharp"
+                        : "heart-circle-outline";
+                    }
+                    return (
+                      <Ionicons name={iconName} size={size} color={color} />
+                    );
+                  },
+                  tabBarActiveTintColor: "mediumseagreen",
+                  tabBarInactiveTintColor: "gray",
+                })}
+              >
+                <Tab.Screen name="Home" component={Home} />
+                <Tab.Screen name="Filters" component={Filters} />
+                <Tab.Screen name="Favorites" component={Favorites} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </FavoritesProvider>
+        </DietProvider>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    ...Platform.select({
+      web: {
+        maxWidth: 380,
+        height: 640,
+        margin: "auto",
+        border: "2px solid black",
+      },
+    }),
+  },
+});

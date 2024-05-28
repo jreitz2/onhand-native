@@ -44,7 +44,7 @@ export default function Results({ isLoading, recipeData, error, noResults }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.7,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
