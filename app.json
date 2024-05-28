@@ -6,6 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "experiments": {
+      "baseUrl": "/onhand-native"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
