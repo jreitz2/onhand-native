@@ -6,6 +6,7 @@ import {
   ImageBackground,
   TextInput,
   Pressable,
+  Platform,
 } from "react-native";
 import { useDiet } from "../DietContext";
 
@@ -122,6 +123,12 @@ export default function Header({ fetchRecipeData }) {
 
 const styles = StyleSheet.create({
   header: {
+    ...Platform.select({
+      web: {
+        width: "100%",
+        height: "100%",
+      },
+    }),
     flex: 0.4,
     backgroundColor: "mediumseagreen",
     padding: 20,
