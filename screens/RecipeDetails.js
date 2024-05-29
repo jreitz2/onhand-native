@@ -1,15 +1,16 @@
 import {
   FlatList,
-  Image,
   Pressable,
   StyleSheet,
   Text,
   View,
+  Platform,
 } from "react-native";
 import React from "react";
 import useFetchRecipeDetails from "../hooks/useFetchRecipeDetails";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
+import { WebView } from "react-native-webview";
 
 export default function RecipeDetails({ route, navigation }) {
   const { item } = route.params;
@@ -45,6 +46,19 @@ export default function RecipeDetails({ route, navigation }) {
   }
 
   if (recipeDetails.ingredients) {
+    const htmlWithScalingCSS = `
+    <head>
+      <style>
+        body {
+          zoom: 2.5;
+        }
+      </style>
+    </head>
+    <body>
+      ${recipeDetails.nutrition}
+    </body>
+  `;
+
     return (
       <View style={styles.container}>
         <FlatList
@@ -76,13 +90,14 @@ export default function RecipeDetails({ route, navigation }) {
                   {index + 1} {". "} {instruction}
                 </Text>
               ))}
-              <Image
-                key={recipeDetails.nutrition}
-                source={{
-                  uri: recipeDetails.nutrition,
-                }}
-                style={styles.image}
-              />
+              {Platform.OS !== "web" && recipeDetails.nutrition && (
+                <WebView
+                  source={{
+                    html: htmlWithScalingCSS,
+                  }}
+                  style={styles.nutritionLabel}
+                />
+              )}
             </View>
           }
           style={{ width: 400 }}
@@ -140,11 +155,11 @@ const styles = StyleSheet.create({
     padding: 10,
     fontFamily: "PatrickHand",
   },
-  image: {
-    width: 350,
-    height: 600,
-    resizeMode: "contain",
+  nutritionLabel: {
     marginVertical: 10,
+    width: 400,
+    height: 650,
+    backgroundColor: "#c1f5c3",
   },
   backToTopButton: {
     position: "absolute",
@@ -153,7 +168,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: "50%",
     transform: [{ translateX: 60 }],
-    backgroundColor: "lightgrey",
+    backgroundColor: "rgba(0,0,0,0.3)",
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",

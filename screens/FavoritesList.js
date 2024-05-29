@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: "50%",
     transform: [{ translateX: 60 }],
-    backgroundColor: "lightgrey",
+    backgroundColor: "rgba(0,0,0,0.3)",
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",

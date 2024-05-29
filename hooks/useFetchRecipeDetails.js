@@ -13,9 +13,12 @@ export default function useFetchRecipeDetails() {
         `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${key}`
       );
       const ingredientData = await response.json();
-
+      const nutritionResponse = await fetch(
+        `https://api.spoonacular.com/recipes/${id}/nutritionLabel?apiKey=${key}`
+      );
+      const nutritionData = await nutritionResponse.text();
       setRecipeDetails({
-        nutrition: `https://api.spoonacular.com/recipes/${id}/nutritionLabel.png?apiKey=${key}`,
+        nutrition: nutritionData,
         ingredients: ingredientData,
       });
     } catch (error) {

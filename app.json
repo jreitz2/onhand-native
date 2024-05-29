@@ -19,7 +19,7 @@
       "bundleIdentifier": "com.jreitz2.onhandnative"
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -39,7 +39,8 @@
     "extra": {
       "eas": {
         "projectId": "e4e6591f-a31e-4add-9da0-ac587b14dfb6"
-      }
+      },
+      "API_KEY": "@env_API_KEY"
     }
   }
 }
