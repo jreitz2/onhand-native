@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Platform.select({
       web: {
-        maxWidth: 380,
-        height: 640,
+        maxWidth: 400,
+        height: 850,
         margin: "auto",
         border: "2px solid black",
       },
