@@ -18,7 +18,7 @@ export const useFetchRecipes = () => {
     setIsLoading(true);
     const noSpaceSearchTerm = searchTerm.replace(" ", "");
     const key = API_KEY;
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=20&addRecipeInformation=true&addRecipeInstructions=true`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${key}&query=${noSpaceSearchTerm}&number=6&addRecipeInformation=true&addRecipeInstructions=true`;
     let diets = [];
     if (isVegetarian) diets.push("vegetarian");
     if (isGlutenFree) diets.push("gluten-free");

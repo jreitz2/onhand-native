@@ -23,7 +23,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "darkseagreen",
+    backgroundColor: "#bef7be",
     justifyContent: "center",
   },
 });

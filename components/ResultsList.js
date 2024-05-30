@@ -69,7 +69,7 @@ export default function ResultsList({ recipeData, navigation, noResults }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "darkseagreen",
+    backgroundColor: "#bef7be",
   },
   regularText: {
     fontSize: 16,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: "50%",
     transform: [{ translateX: 60 }],
-    backgroundColor: "rgba(0,0,0,0.3)",
+    backgroundColor: "rgba(255,255,255,0.8)",
     borderRadius: 25,
     alignItems: "center",
     justifyContent: "center",

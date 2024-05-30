@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 24,
-    padding: 10,
+    padding: 5,
     fontFamily: "PatrickHand",
   },
   regularText: {
@@ -146,10 +146,11 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: "white",
     width: 250,
-    marginLeft: 0,
+    marginLeft: 10,
     borderRadius: 5,
     padding: 5,
-    fontSize: 16,
+    fontSize: 18,
+    height: 48,
     fontFamily: "PatrickHand",
   },
   search: {
@@ -162,23 +163,24 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     marginLeft: 10,
     padding: 10,
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: "PatrickHand",
   },
   filters: {
     flexDirection: "row",
     flexWrap: "wrap",
     width: 300,
+    marginLeft: 10,
   },
   filterText: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: "PatrickHand",
   },
   filterBackground: {
-    width: "25%",
+    width: "30%",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "lightgrey",
+    backgroundColor: "#d6d6d6",
     padding: 5,
     borderRadius: 5,
     margin: 2,

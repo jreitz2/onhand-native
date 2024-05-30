@@ -27,7 +27,7 @@ export default function App() {
   if (fontsLoaded) {
     return (
       <>
-        <StatusBar hidden={true} />
+        <StatusBar backgroundColor="black" />
         <View style={styles.container}>
           <DietProvider>
             <FavoritesProvider>

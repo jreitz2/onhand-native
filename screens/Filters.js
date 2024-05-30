@@ -75,22 +75,22 @@ export default function Filters() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "darkseagreen",
+    backgroundColor: "#bef7be",
     justifyContent: "center",
     alignItems: "center",
   },
   titleText: {
-    fontSize: 24,
+    fontSize: 26,
     padding: 10,
     fontFamily: "PatrickHand",
   },
   regularText: {
-    fontSize: 16,
-    padding: 10,
+    fontSize: 18,
+    padding: 12,
     fontFamily: "PatrickHand",
   },
   filterButtons: {
-    backgroundColor: "lightgrey",
+    backgroundColor: "#d6d6d6",
     margin: 10,
     borderRadius: 15,
   },

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { StyleSheet, View, Text, Image, Pressable, Share } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFavorites } from "../FavoritesContext";
 
@@ -18,6 +18,22 @@ export default function RecipeListItem({ item, navigation }) {
   const isFavorite = favorites.some(
     (favoriteItem) => favoriteItem.id === item.id
   );
+
+  const handleSharePress = async () => {
+    try {
+      const result = await Share.share({
+        message: `Check out this recipe: ${item.title}! ${item.imageUrl}`,
+      });
+
+      if (result.action === Share.sharedAction) {
+        console.log("Shared successfully");
+      } else if (result.action === Share.dismissedAction) {
+        console.log("Share dialog was dismissed");
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <Pressable onPress={() => navigation.push("Recipe Details", { item })}>
@@ -47,10 +63,13 @@ export default function RecipeListItem({ item, navigation }) {
             <Text style={styles.regularText}>{item.readyTime} minutes</Text>
           </View>
           <View style={styles.infoItem}>
-            <Ionicons name={"thumbs-up-outline"} size={30} color={"black"} />
-            <Text style={styles.regularText}>
-              {item.likes === 1 ? "1 like" : ` ${item.likes} likes`}
-            </Text>
+            <Ionicons
+              name={"share-outline"}
+              size={30}
+              color={"black"}
+              onPress={handleSharePress}
+            />
+            <Text style={styles.regularText}>Share</Text>
           </View>
         </View>
       </View>
@@ -61,7 +80,7 @@ export default function RecipeListItem({ item, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#c1f5c3",
+    backgroundColor: "#e9f5e9",
     padding: 10,
     marginTop: 10,
     marginHorizontal: 4,
