@@ -21,8 +21,9 @@ export default function RecipeListItem({ item, navigation }) {
 
   const handleSharePress = async () => {
     try {
+      const instructions = item.instructions.map((step) => step).join("\n");
       const result = await Share.share({
-        message: `Check out this recipe: ${item.title}! ${item.imageUrl}`,
+        message: `Check out this recipe: ${item.title}!\n ${item.imageUrl} \n Instructions: \n ${instructions}`,
       });
 
       if (result.action === Share.sharedAction) {
@@ -64,12 +65,11 @@ export default function RecipeListItem({ item, navigation }) {
           </View>
           <View style={styles.infoItem}>
             <Ionicons
-              name={"share-outline"}
+              name={"share-social-outline"}
               size={30}
               color={"black"}
               onPress={handleSharePress}
             />
-            <Text style={styles.regularText}>Share</Text>
           </View>
         </View>
       </View>
