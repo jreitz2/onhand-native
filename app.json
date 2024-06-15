@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "onhand-native",
+    "name": "On-hand Cuisine",
     "slug": "onhand-native",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/a-icon.jpg",
     "userInterfaceStyle": "light",
     "experiments": {
       "baseUrl": "/onhand-native"
@@ -19,7 +19,7 @@
       "bundleIdentifier": "com.jreitz2.onhandnative"
     },
     "android": {
-      "versionCode": 5,
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
